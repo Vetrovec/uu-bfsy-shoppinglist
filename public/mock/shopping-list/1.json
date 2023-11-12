@@ -1,0 +1,27 @@
+{
+  "id": "sl-1",
+  "name": "Sample shopping list 1",
+  "owner": {
+    "id": "u-1",
+    "name": "John Doe"
+  },
+  "members": [
+    {
+      "id": "u-2",
+      "name": "Jane Doe",
+      "joinedAt": "2023-11-11T00:00:00Z"
+    }
+  ],
+  "items": [
+    {
+      "id": "i-1",
+      "name": "Sample item #1",
+      "status": "Active"
+    },
+    {
+      "id": "i-2",
+      "name": "Sample item #2",
+      "status": "Resolved"
+    }
+  ]
+}

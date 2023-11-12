@@ -1,0 +1,42 @@
+{
+  "id": "sl-2",
+  "name": "Sample shopping list 2",
+  "owner": {
+    "id": "u-2",
+    "name": "Jane Doe"
+  },
+  "members": [
+    {
+      "id": "u-1",
+      "name": "John Doe",
+      "joinedAt": "2023-11-11T00:00:00Z"
+    },
+    {
+      "id": "u-3",
+      "name": "Adam Doe",
+      "joinedAt": "2023-11-11T00:00:00Z"
+    }
+  ],
+  "items": [
+    {
+      "id": "i-1",
+      "name": "Sample item #1",
+      "status": "Active"
+    },
+    {
+      "id": "i-2",
+      "name": "Sample item #2",
+      "status": "Resolved"
+    },
+    {
+      "id": "i-3",
+      "name": "Sample item #3",
+      "status": "Active"
+    },
+    {
+      "id": "i-4",
+      "name": "Sample item #4",
+      "status": "Resolved"
+    }
+  ]
+}
