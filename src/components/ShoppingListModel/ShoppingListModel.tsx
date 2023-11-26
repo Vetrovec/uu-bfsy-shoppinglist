@@ -20,6 +20,7 @@ function ShoppingListModel({ children, list }: Props) {
           id: "u-1",
           name: "John Doe",
         },
+        status: "Active",
       },
     ]);
   }, []);

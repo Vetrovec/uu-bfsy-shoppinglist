@@ -1,10 +1,18 @@
-import { Link } from "react-router-dom";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Grid,
+  Paper,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import { useMemo, useState } from "react";
 import { useContextSafe } from "../../helpers/useContextSafe";
 import ShoppingListContext from "../../contexts/ShoppingList";
-import { Box, Button, Grid, Paper, Typography, useTheme } from "@mui/material";
-import { useState } from "react";
 import DeleteListDialog from "../../components/DeleteListDialog";
 import CreateListDialog from "../../components/CreateListDialog";
+import ShoppingListTile from "../../components/ShoppingListTile";
 
 function Home() {
   const {
@@ -14,8 +22,16 @@ function Home() {
 
   const theme = useTheme();
 
+  const [showOnlyActive, setShowOnlyActive] = useState(false);
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState<string | null>(null);
+
+  const filteredList = useMemo(() => {
+    if (!showOnlyActive) {
+      return list;
+    }
+    return list.filter((target) => target.status === "Active");
+  }, [list, showOnlyActive]);
 
   const handleCreateShoppingList = (e: { name: string }) => {
     createShoppingList(e.name);
@@ -61,30 +77,28 @@ function Home() {
           </Button>
         </Box>
 
+        <Box component={Paper} px={2} py={0.5}>
+          <Box
+            component="label"
+            display="flex"
+            alignItems="center"
+            justifyContent="flex-end"
+          >
+            <Checkbox
+              checked={showOnlyActive}
+              onChange={(e) => setShowOnlyActive(e.target.checked)}
+            />
+            <Typography>Show only active</Typography>
+          </Box>
+        </Box>
+
         <Grid container spacing={2}>
-          {list.map((overview) => (
+          {filteredList.map((overview) => (
             <Grid item key={overview.id} xs={12} sm={6} md={4} lg={3}>
-              <Box component={Paper} p={2}>
-                <Typography noWrap variant="h6">
-                  {overview.name}
-                </Typography>
-                <Typography noWrap>Owner: {overview.owner.name}</Typography>
-                <Box display="flex" justifyContent="flex-end" mt={2} gap={2}>
-                  <Link to={`/shopping-list/${overview.id}`}>
-                    <Button variant="outlined" size="small">
-                      Open
-                    </Button>
-                  </Link>
-                  <Button
-                    variant="outlined"
-                    color="error"
-                    size="small"
-                    onClick={() => setOpenDeleteDialog(overview.id)}
-                  >
-                    Delete
-                  </Button>
-                </Box>
-              </Box>
+              <ShoppingListTile
+                overview={overview}
+                onDelete={() => setOpenDeleteDialog(overview.id)}
+              />
             </Grid>
           ))}
         </Grid>

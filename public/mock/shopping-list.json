@@ -6,7 +6,8 @@
       "owner": {
         "id": "u-1",
         "name": "John Doe"
-      }
+      },
+      "status": "Active"
     },
     {
       "id": "sl-2",
@@ -14,7 +15,17 @@
       "owner": {
         "id": "u-2",
         "name": "Jane Doe"
-      }
+      },
+      "status": "Active"
+    },
+    {
+      "id": "sl-3",
+      "name": "Sample shopping list 3",
+      "owner": {
+        "id": "u-1",
+        "name": "John Doe"
+      },
+      "status": "Archived"
     }
   ]
 }

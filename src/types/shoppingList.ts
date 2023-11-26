@@ -1,5 +1,7 @@
 export type ShoppingListItemStatus = "Active" | "Resolved";
 
+export type ShoppingListStatus = "Active" | "Archived";
+
 export interface ShoppingListItem {
   id: string;
   name: string;
@@ -19,6 +21,7 @@ export interface ShoppingListOverview {
   id: string;
   name: string;
   owner: ShoppingListUser;
+  status: ShoppingListStatus;
 }
 
 export interface ShoppingList extends ShoppingListOverview {
