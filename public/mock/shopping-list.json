@@ -1,0 +1,20 @@
+{
+  "list": [
+    {
+      "id": "sl-1",
+      "name": "Sample shopping list 1",
+      "owner": {
+        "id": "u-1",
+        "name": "John Doe"
+      }
+    },
+    {
+      "id": "sl-2",
+      "name": "Sample shopping list 2",
+      "owner": {
+        "id": "u-2",
+        "name": "Jane Doe"
+      }
+    }
+  ]
+}

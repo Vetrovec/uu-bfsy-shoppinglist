@@ -15,10 +15,13 @@ export interface ShoppingListMember extends ShoppingListUser {
   joinedAt: Date;
 }
 
-export interface ShoppingList {
+export interface ShoppingListOverview {
   id: string;
   name: string;
   owner: ShoppingListUser;
+}
+
+export interface ShoppingList extends ShoppingListOverview {
   members: ShoppingListMember[];
   items: ShoppingListItem[];
 }

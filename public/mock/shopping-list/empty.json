@@ -1,0 +1,10 @@
+{
+  "id": "sl-0",
+  "name": "Empty shopping list",
+  "owner": {
+    "id": "u-1",
+    "name": "John Doe"
+  },
+  "members": [],
+  "items": []
+}
