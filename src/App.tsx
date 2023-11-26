@@ -7,12 +7,29 @@ function App() {
     {
       path: "/",
       element: <Home />,
+      loader: async ({ request }) => {
+        const response = await fetch(`/mock/shopping-list.json`, {
+          signal: request.signal,
+        });
+        const data = await response.json();
+        return data;
+      },
     },
     {
       path: "/shopping-list/:id",
       element: <ShoppingListId />,
       loader: async ({ params, request }) => {
-        const response = await fetch(`/mock/shopping-list/${params.id}.json`, {
+        const id = params.id!;
+
+        let url;
+        // Whitelist the ids with mock data
+        if (["sl-1", "sl-2"].includes(id)) {
+          url = `/mock/shopping-list/${id}.json`;
+        } else {
+          url = `/mock/shopping-list/empty.json`;
+        }
+
+        const response = await fetch(url, {
           signal: request.signal,
         });
         const data = await response.json();

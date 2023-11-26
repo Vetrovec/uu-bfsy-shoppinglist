@@ -5,6 +5,7 @@
     "id": "u-1",
     "name": "John Doe"
   },
+  "status": "Active",
   "members": [
     {
       "id": "u-2",
