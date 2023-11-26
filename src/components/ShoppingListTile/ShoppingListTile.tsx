@@ -1,13 +1,21 @@
 import { Box, Button, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { ShoppingListOverview } from "../../types/shoppingList";
+import {
+  ShoppingListOverview,
+  ShoppingListUser,
+} from "../../types/shoppingList";
 
 interface Props {
+  currentUser: ShoppingListUser;
   overview: ShoppingListOverview;
   onDelete: () => void;
 }
 
-function ShoppingListTile({ overview, onDelete }: Props) {
+function ShoppingListTile({ currentUser, overview, onDelete }: Props) {
+  const canOpen = overview.status === "Active";
+
+  const canDelete = overview.owner.id === currentUser.id;
+
   return (
     <Box component={Paper} p={2}>
       <Typography noWrap variant="h6">
@@ -16,7 +24,7 @@ function ShoppingListTile({ overview, onDelete }: Props) {
       <Typography noWrap>Owner: {overview.owner.name}</Typography>
       <Typography noWrap>Status: {overview.status}</Typography>
       <Box display="flex" justifyContent="flex-end" mt={2} gap={2}>
-        {overview.status === "Active" && (
+        {canOpen && (
           <Link to={`/shopping-list/${overview.id}`}>
             <Button variant="outlined" size="small">
               Open
@@ -24,6 +32,7 @@ function ShoppingListTile({ overview, onDelete }: Props) {
           </Link>
         )}
         <Button
+          disabled={!canDelete}
           variant="outlined"
           color="error"
           size="small"

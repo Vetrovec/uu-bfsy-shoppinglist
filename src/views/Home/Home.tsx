@@ -13,12 +13,15 @@ import ShoppingListContext from "../../contexts/ShoppingList";
 import DeleteListDialog from "../../components/DeleteListDialog";
 import CreateListDialog from "../../components/CreateListDialog";
 import ShoppingListTile from "../../components/ShoppingListTile";
+import useCurrentUser from "../../hooks/useCurrentUser";
 
 function Home() {
   const {
     state: { list },
     mutations: { createShoppingList, deleteShoppingList },
   } = useContextSafe(ShoppingListContext);
+
+  const currentUser = useCurrentUser();
 
   const theme = useTheme();
 
@@ -96,6 +99,7 @@ function Home() {
           {filteredList.map((overview) => (
             <Grid item key={overview.id} xs={12} sm={6} md={4} lg={3}>
               <ShoppingListTile
+                currentUser={currentUser}
                 overview={overview}
                 onDelete={() => setOpenDeleteDialog(overview.id)}
               />
