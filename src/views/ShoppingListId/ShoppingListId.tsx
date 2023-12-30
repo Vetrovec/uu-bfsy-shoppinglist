@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 import ListMemberTable from "../../components/ListMemberTable";
 import ListItemTable from "../../components/ListItemTable";
 import { ShoppingListItem, ShoppingListMember } from "../../types/shoppingList";
@@ -105,8 +106,17 @@ function ShoppingListId() {
               />
             </Box>
             <Box display="flex" alignItems="center" gap={1}>
-              <Typography>Owner: {shoppingList.owner.name}</Typography>
-              {isCurrentUserOwner && <Typography>(me)</Typography>}
+              <Typography>
+                <FormattedMessage
+                  id="views.shoppinglistid.owner"
+                  values={{ name: shoppingList.owner.name }}
+                />
+              </Typography>
+              {isCurrentUserOwner && (
+                <Typography>
+                  (<FormattedMessage id="views.shoppinglistid.me" />)
+                </Typography>
+              )}
             </Box>
           </Box>
         </Grid>
@@ -114,7 +124,9 @@ function ShoppingListId() {
         <Grid item xs={12} md={8}>
           <Box component={Paper} p={2}>
             <Box mb={2}>
-              <Typography variant="h5">Members</Typography>
+              <Typography variant="h5">
+                <FormattedMessage id="views.shoppinglistid.members" />
+              </Typography>
             </Box>
             <ListMemberTable
               isCurrentUserOwner={isCurrentUserOwner}
@@ -127,10 +139,12 @@ function ShoppingListId() {
 
         <Grid item xs={12} md={4}>
           <Box component={Paper} p={2}>
-            <Typography variant="h5">Add member</Typography>
+            <Typography variant="h5">
+              <FormattedMessage id="views.shoppinglistid.addMember" />
+            </Typography>
             {!isCurrentUserOwner && (
               <Typography variant="body2">
-                Only the owner can add members
+                <FormattedMessage id="views.shoppinglistid.onlyOwnerMembers" />
               </Typography>
             )}
             <CreateMemberForm
@@ -148,13 +162,15 @@ function ShoppingListId() {
               justifyContent="space-between"
               mb={2}
             >
-              <Typography variant="h5">Items</Typography>
+              <Typography variant="h5">
+                <FormattedMessage id="views.shoppinglistid.items" />
+              </Typography>
               <Box component="label" display="flex" alignItems="center">
                 <Checkbox
                   checked={showOnlyActiveItems}
                   onChange={(e) => setShowOnlyActiveItems(e.target.checked)}
                 />
-                Show only active items
+                <FormattedMessage id="views.shoppinglistid.showOnlyActive" />
               </Box>
             </Box>
             <ListItemTable
@@ -167,7 +183,9 @@ function ShoppingListId() {
 
         <Grid item xs={12} md={4}>
           <Box component={Paper} p={2}>
-            <Typography variant="h5">Add item</Typography>
+            <Typography variant="h5">
+              <FormattedMessage id="views.shoppinglistid.addItem" />
+            </Typography>
             <CreateItemForm onSubmit={handleItemAdd} />
           </Box>
         </Grid>

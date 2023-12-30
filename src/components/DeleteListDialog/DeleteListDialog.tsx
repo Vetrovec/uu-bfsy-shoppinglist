@@ -6,6 +6,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
+import { FormattedMessage } from "react-intl";
 
 interface Props {
   open: boolean;
@@ -16,20 +17,20 @@ interface Props {
 function DeleteListDialog({ open, onCancel, onConfirm }: Props) {
   return (
     <Dialog open={open} onClose={onCancel}>
-      <DialogTitle>Confirm delete</DialogTitle>
+      <DialogTitle>
+        <FormattedMessage id="components.deletelistdialog.title" />
+      </DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Are you sure you want to delete this shopping list?
-          <br />
-          This action cannot be undone.
+          <FormattedMessage id="components.deletelistdialog.description" />
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button autoFocus onClick={onCancel}>
-          Cancel
+          <FormattedMessage id="components.deletelistdialog.cancel" />
         </Button>
         <Button color="error" onClick={onConfirm}>
-          Delete
+          <FormattedMessage id="components.deletelistdialog.confirm" />
         </Button>
       </DialogActions>
     </Dialog>

@@ -1,5 +1,6 @@
 import { Box, Button, Checkbox, Grid, Paper, Typography } from "@mui/material";
 import { useMemo, useState } from "react";
+import { FormattedMessage } from "react-intl";
 import { useContextSafe } from "../../hooks/useContextSafe";
 import ShoppingListContext from "../../contexts/ShoppingList";
 import DeleteListDialog from "../../components/DeleteListDialog";
@@ -62,9 +63,11 @@ function Home() {
           justifyContent="space-between"
           p={2}
         >
-          <Typography variant="h5">Create new shopping list</Typography>
+          <Typography variant="h5">
+            <FormattedMessage id="views.home.createShoppingList" />
+          </Typography>
           <Button variant="outlined" onClick={() => setOpenCreateModal(true)}>
-            Create
+            <FormattedMessage id="views.home.create" />
           </Button>
         </Box>
 
@@ -79,7 +82,9 @@ function Home() {
               checked={showOnlyActive}
               onChange={(e) => setShowOnlyActive(e.target.checked)}
             />
-            <Typography>Show only active</Typography>
+            <Typography>
+              <FormattedMessage id="views.home.showOnlyActive" />
+            </Typography>
           </Box>
         </Box>
 

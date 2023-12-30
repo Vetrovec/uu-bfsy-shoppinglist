@@ -6,6 +6,7 @@ import {
   TableContainer,
   TableHead,
 } from "@mui/material";
+import { FormattedMessage } from "react-intl";
 import { StyledTableCell } from "../../styled/StyledTableCell";
 import { StyledTableRow } from "../../styled/StyledTableRow";
 import { ShoppingListItem } from "../../types/shoppingList";
@@ -22,10 +23,14 @@ function ListItemTable({ items, onDelete, onChange }: Props) {
       <Table aria-label="Member table">
         <TableHead>
           <StyledTableRow>
-            <StyledTableCell component="th">Status</StyledTableCell>
-            <StyledTableCell component="th">Name</StyledTableCell>
+            <StyledTableCell component="th">
+              <FormattedMessage id="components.listitemtable.status" />
+            </StyledTableCell>
+            <StyledTableCell component="th">
+              <FormattedMessage id="components.listitemtable.name" />
+            </StyledTableCell>
             <StyledTableCell component="th" align="right">
-              Action
+              <FormattedMessage id="components.listitemtable.action" />
             </StyledTableCell>
           </StyledTableRow>
         </TableHead>
@@ -33,7 +38,7 @@ function ListItemTable({ items, onDelete, onChange }: Props) {
           {!items?.length && (
             <StyledTableRow>
               <StyledTableCell colSpan={3} align="center">
-                No items found
+                <FormattedMessage id="components.listitemtable.noItems" />
               </StyledTableCell>
             </StyledTableRow>
           )}
@@ -60,7 +65,7 @@ function ListItemTable({ items, onDelete, onChange }: Props) {
               <StyledTableCell>{item.name}</StyledTableCell>
               <StyledTableCell align="right">
                 <Button color="error" onClick={() => onDelete({ item })}>
-                  Delete
+                  <FormattedMessage id="components.listitemtable.delete" />
                 </Button>
               </StyledTableCell>
             </StyledTableRow>

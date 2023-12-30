@@ -2,6 +2,8 @@ import {
   AppBar,
   Box,
   Button,
+  MenuItem,
+  Select,
   ThemeProvider,
   Toolbar,
   Typography,
@@ -10,6 +12,8 @@ import {
 import { useContextSafe } from "../../hooks/useContextSafe";
 import AppContext from "../../contexts/App";
 import { DarkModeOutlined } from "@mui/icons-material";
+import { IntlProvider } from "react-intl";
+import { getMessages } from "../../translations";
 
 const lightTheme = createTheme({
   palette: {
@@ -32,39 +36,64 @@ interface LayoutRootProps {
 
 function LayoutRoot({ children }: LayoutRootProps) {
   const {
-    state: { selectedTheme },
-    mutations: { setSelectedTheme },
+    state: { selectedLanguage, selectedTheme },
+    mutations: { setSelectedLanguage, setSelectedTheme },
   } = useContextSafe(AppContext);
 
   const theme = selectedTheme === "dark" ? darkTheme : lightTheme;
 
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        minHeight="100%"
-        style={{ backgroundColor: theme.palette.background.default }}
+      <IntlProvider
+        locale={selectedLanguage}
+        messages={getMessages(selectedLanguage)}
       >
-        <AppBar position="static">
-          <Box
-            component={Toolbar}
-            display="flex"
-            justifyContent="space-between"
-          >
-            <Typography variant="h6">Shopping List</Typography>
-            <Box display="flex" alignItems="center" gap={2}>
-              <Button
-                color="inherit"
-                onClick={() =>
-                  setSelectedTheme(selectedTheme === "dark" ? "light" : "dark")
-                }
-              >
-                <DarkModeOutlined />
-              </Button>
+        <Box
+          minHeight="100%"
+          style={{ backgroundColor: theme.palette.background.default }}
+        >
+          <AppBar position="static">
+            <Box
+              component={Toolbar}
+              display="flex"
+              justifyContent="space-between"
+            >
+              <Typography variant="h6">Shopping List</Typography>
+              <Box display="flex" alignItems="center" gap={2}>
+                <Select
+                  size="small"
+                  variant="outlined"
+                  value={selectedLanguage}
+                  componentsProps={{
+                    root: {
+                      style: {
+                        backgroundColor: theme.palette.background.paper,
+                      },
+                    },
+                  }}
+                  onChange={(e) =>
+                    setSelectedLanguage(e.target.value as "cs" | "en")
+                  }
+                >
+                  <MenuItem value="cs">Čeština</MenuItem>
+                  <MenuItem value="en">English</MenuItem>
+                </Select>
+                <Button
+                  color="inherit"
+                  onClick={() =>
+                    setSelectedTheme(
+                      selectedTheme === "dark" ? "light" : "dark",
+                    )
+                  }
+                >
+                  <DarkModeOutlined />
+                </Button>
+              </Box>
             </Box>
-          </Box>
-        </AppBar>
-        <Box>{children}</Box>
-      </Box>
+          </AppBar>
+          <Box>{children}</Box>
+        </Box>
+      </IntlProvider>
     </ThemeProvider>
   );
 }

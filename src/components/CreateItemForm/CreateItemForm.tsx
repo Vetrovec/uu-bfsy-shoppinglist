@@ -1,5 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
+import { FormattedMessage } from "react-intl";
 
 interface Props {
   onSubmit: (event: { name: string }) => void;
@@ -25,12 +26,12 @@ function CreateItemForm({ onSubmit }: Props) {
     >
       <TextField
         size="small"
-        label="Item name"
+        label={<FormattedMessage id="components.createitemform.name" />}
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
       <Button type="submit" variant="contained" disabled={!name}>
-        Add item
+        <FormattedMessage id="components.createitemform.add" />
       </Button>
     </Box>
   );
