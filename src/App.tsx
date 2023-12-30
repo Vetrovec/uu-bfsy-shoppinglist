@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import AppModel from "./components/AppModel";
 import Home from "./routes/home";
 import ShoppingListId from "./routes/shopping-list-id";
 
@@ -38,7 +39,11 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <AppModel>
+      <RouterProvider router={router} />
+    </AppModel>
+  );
 }
 
 export default App;

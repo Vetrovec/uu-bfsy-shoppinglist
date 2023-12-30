@@ -5,7 +5,6 @@ import {
   TableBody,
   TableContainer,
   TableHead,
-  useTheme,
 } from "@mui/material";
 import { StyledTableCell } from "../../styled/StyledTableCell";
 import { StyledTableRow } from "../../styled/StyledTableRow";
@@ -18,8 +17,6 @@ interface Props {
 }
 
 function ListItemTable({ items, onDelete, onChange }: Props) {
-  const theme = useTheme();
-
   return (
     <TableContainer>
       <Table aria-label="Member table">
@@ -45,7 +42,6 @@ function ListItemTable({ items, onDelete, onChange }: Props) {
               key={item.id}
               sx={{
                 "&:last-child td, &:last-child th": { border: 0 },
-                "&:hover": { backgroundColor: theme.palette.grey[100] },
               }}
             >
               <StyledTableCell>

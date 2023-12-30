@@ -1,19 +1,12 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  Grid,
-  Paper,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Button, Checkbox, Grid, Paper, Typography } from "@mui/material";
 import { useMemo, useState } from "react";
-import { useContextSafe } from "../../helpers/useContextSafe";
+import { useContextSafe } from "../../hooks/useContextSafe";
 import ShoppingListContext from "../../contexts/ShoppingList";
 import DeleteListDialog from "../../components/DeleteListDialog";
 import CreateListDialog from "../../components/CreateListDialog";
 import ShoppingListTile from "../../components/ShoppingListTile";
 import useCurrentUser from "../../hooks/useCurrentUser";
+import LayoutRoot from "../../components/LayoutRoot";
 
 function Home() {
   const {
@@ -22,8 +15,6 @@ function Home() {
   } = useContextSafe(ShoppingListContext);
 
   const currentUser = useCurrentUser();
-
-  const theme = useTheme();
 
   const [showOnlyActive, setShowOnlyActive] = useState(false);
   const [openCreateModal, setOpenCreateModal] = useState(false);
@@ -50,10 +41,7 @@ function Home() {
   };
 
   return (
-    <Box
-      minHeight="100%"
-      style={{ backgroundColor: theme.palette.primary.main }}
-    >
+    <LayoutRoot>
       <CreateListDialog
         open={openCreateModal}
         onCancel={() => setOpenCreateModal(false)}
@@ -107,7 +95,7 @@ function Home() {
           ))}
         </Grid>
       </Box>
-    </Box>
+    </LayoutRoot>
   );
 }
 

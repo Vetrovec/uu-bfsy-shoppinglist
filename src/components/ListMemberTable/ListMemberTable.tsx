@@ -4,7 +4,6 @@ import {
   TableBody,
   TableContainer,
   TableHead,
-  useTheme,
 } from "@mui/material";
 import { StyledTableCell } from "../../styled/StyledTableCell";
 import { StyledTableRow } from "../../styled/StyledTableRow";
@@ -23,8 +22,6 @@ function ListMemberTable({
   members,
   onDelete,
 }: Props) {
-  const theme = useTheme();
-
   return (
     <TableContainer>
       <Table aria-label="Member table">
@@ -49,7 +46,6 @@ function ListMemberTable({
               key={member.id}
               sx={{
                 "&:last-child td, &:last-child th": { border: 0 },
-                "&:hover": { backgroundColor: theme.palette.grey[100] },
               }}
             >
               <StyledTableCell>{member.name}</StyledTableCell>

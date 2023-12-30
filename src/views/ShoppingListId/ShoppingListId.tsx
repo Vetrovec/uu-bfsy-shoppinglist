@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ShoppingListIdContext from "../../contexts/ShoppingListId";
-import { useContextSafe } from "../../helpers/useContextSafe";
+import { useContextSafe } from "../../hooks/useContextSafe";
 import CreateItemForm from "../../components/CreateItemForm";
 import CreateMemberForm from "../../components/CreateMemberForm";
 import useCurrentUser from "../../hooks/useCurrentUser";
@@ -11,12 +11,12 @@ import {
   Paper,
   TextField,
   Typography,
-  useTheme,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ListMemberTable from "../../components/ListMemberTable";
 import ListItemTable from "../../components/ListItemTable";
 import { ShoppingListItem, ShoppingListMember } from "../../types/shoppingList";
+import LayoutRoot from "../../components/LayoutRoot";
 
 function ShoppingListId() {
   const {
@@ -25,8 +25,6 @@ function ShoppingListId() {
   } = useContextSafe(ShoppingListIdContext);
 
   const navigate = useNavigate();
-
-  const theme = useTheme();
 
   const currentUser = useCurrentUser();
 
@@ -94,12 +92,7 @@ function ShoppingListId() {
   }, [isCurrentUserMemberOrOwner, navigate]);
 
   return (
-    <Box
-      display="flex"
-      minHeight="100%"
-      alignItems="start"
-      style={{ backgroundColor: theme.palette.primary.main }}
-    >
+    <LayoutRoot>
       <Grid container spacing={2} p={4}>
         <Grid item xs={12}>
           <Box component={Paper} p={2}>
@@ -179,7 +172,7 @@ function ShoppingListId() {
           </Box>
         </Grid>
       </Grid>
-    </Box>
+    </LayoutRoot>
   );
 }
 
