@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ShoppingListIdContext from "../../contexts/ShoppingListId";
-import { useContextSafe } from "../../helpers/useContextSafe";
+import { useContextSafe } from "../../hooks/useContextSafe";
 import CreateItemForm from "../../components/CreateItemForm";
 import CreateMemberForm from "../../components/CreateMemberForm";
 import useCurrentUser from "../../hooks/useCurrentUser";
@@ -11,12 +11,13 @@ import {
   Paper,
   TextField,
   Typography,
-  useTheme,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 import ListMemberTable from "../../components/ListMemberTable";
 import ListItemTable from "../../components/ListItemTable";
 import { ShoppingListItem, ShoppingListMember } from "../../types/shoppingList";
+import LayoutRoot from "../../components/LayoutRoot";
 
 function ShoppingListId() {
   const {
@@ -25,8 +26,6 @@ function ShoppingListId() {
   } = useContextSafe(ShoppingListIdContext);
 
   const navigate = useNavigate();
-
-  const theme = useTheme();
 
   const currentUser = useCurrentUser();
 
@@ -94,12 +93,7 @@ function ShoppingListId() {
   }, [isCurrentUserMemberOrOwner, navigate]);
 
   return (
-    <Box
-      display="flex"
-      minHeight="100%"
-      alignItems="start"
-      style={{ backgroundColor: theme.palette.primary.main }}
-    >
+    <LayoutRoot>
       <Grid container spacing={2} p={4}>
         <Grid item xs={12}>
           <Box component={Paper} p={2}>
@@ -112,8 +106,17 @@ function ShoppingListId() {
               />
             </Box>
             <Box display="flex" alignItems="center" gap={1}>
-              <Typography>Owner: {shoppingList.owner.name}</Typography>
-              {isCurrentUserOwner && <Typography>(me)</Typography>}
+              <Typography>
+                <FormattedMessage
+                  id="views.shoppinglistid.owner"
+                  values={{ name: shoppingList.owner.name }}
+                />
+              </Typography>
+              {isCurrentUserOwner && (
+                <Typography>
+                  (<FormattedMessage id="views.shoppinglistid.me" />)
+                </Typography>
+              )}
             </Box>
           </Box>
         </Grid>
@@ -121,7 +124,9 @@ function ShoppingListId() {
         <Grid item xs={12} md={8}>
           <Box component={Paper} p={2}>
             <Box mb={2}>
-              <Typography variant="h5">Members</Typography>
+              <Typography variant="h5">
+                <FormattedMessage id="views.shoppinglistid.members" />
+              </Typography>
             </Box>
             <ListMemberTable
               isCurrentUserOwner={isCurrentUserOwner}
@@ -134,10 +139,12 @@ function ShoppingListId() {
 
         <Grid item xs={12} md={4}>
           <Box component={Paper} p={2}>
-            <Typography variant="h5">Add member</Typography>
+            <Typography variant="h5">
+              <FormattedMessage id="views.shoppinglistid.addMember" />
+            </Typography>
             {!isCurrentUserOwner && (
               <Typography variant="body2">
-                Only the owner can add members
+                <FormattedMessage id="views.shoppinglistid.onlyOwnerMembers" />
               </Typography>
             )}
             <CreateMemberForm
@@ -155,13 +162,15 @@ function ShoppingListId() {
               justifyContent="space-between"
               mb={2}
             >
-              <Typography variant="h5">Items</Typography>
+              <Typography variant="h5">
+                <FormattedMessage id="views.shoppinglistid.items" />
+              </Typography>
               <Box component="label" display="flex" alignItems="center">
                 <Checkbox
                   checked={showOnlyActiveItems}
                   onChange={(e) => setShowOnlyActiveItems(e.target.checked)}
                 />
-                Show only active items
+                <FormattedMessage id="views.shoppinglistid.showOnlyActive" />
               </Box>
             </Box>
             <ListItemTable
@@ -174,12 +183,14 @@ function ShoppingListId() {
 
         <Grid item xs={12} md={4}>
           <Box component={Paper} p={2}>
-            <Typography variant="h5">Add item</Typography>
+            <Typography variant="h5">
+              <FormattedMessage id="views.shoppinglistid.addItem" />
+            </Typography>
             <CreateItemForm onSubmit={handleItemAdd} />
           </Box>
         </Grid>
       </Grid>
-    </Box>
+    </LayoutRoot>
   );
 }
 

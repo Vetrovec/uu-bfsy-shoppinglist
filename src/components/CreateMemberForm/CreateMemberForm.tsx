@@ -1,5 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
+import { FormattedMessage } from "react-intl";
 
 interface Props {
   disabled?: boolean;
@@ -26,13 +27,13 @@ function CreateMemberForm({ disabled, onSubmit }: Props) {
     >
       <TextField
         size="small"
-        label="Member name"
+        label={<FormattedMessage id="components.creatememberform.name" />}
         value={name}
         disabled={disabled}
         onChange={(e) => setName(e.target.value)}
       />
       <Button type="submit" variant="contained" disabled={disabled || !name}>
-        Add member
+        <FormattedMessage id="components.creatememberform.add" />
       </Button>
     </Box>
   );

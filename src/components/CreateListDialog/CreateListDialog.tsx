@@ -8,6 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useState } from "react";
+import { FormattedMessage } from "react-intl";
 
 interface Props {
   open: boolean;
@@ -28,21 +29,23 @@ function CreateListDialog({ open, onCancel, onConfirm }: Props) {
       <DialogTitle>Create shopping list</DialogTitle>
       <DialogContent>
         <DialogContentText mb={1}>
-          Please enter the name of the new shopping list.
+          <FormattedMessage id="components.createlistdialog.description" />
         </DialogContentText>
         <TextField
           autoFocus
           fullWidth
           variant="standard"
-          label="Shopping list name"
+          label={<FormattedMessage id="components.createlistdialog.label" />}
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onCancel}>Cancel</Button>
+        <Button onClick={onCancel}>
+          <FormattedMessage id="components.createlistdialog.cancel" />
+        </Button>
         <Button autoFocus disabled={!name} onClick={handleConfirm}>
-          Create
+          <FormattedMessage id="components.createlistdialog.confirm" />
         </Button>
       </DialogActions>
     </Dialog>

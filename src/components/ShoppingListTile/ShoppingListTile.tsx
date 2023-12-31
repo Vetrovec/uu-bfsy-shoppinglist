@@ -1,4 +1,5 @@
 import { Box, Button, Paper, Typography } from "@mui/material";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import {
   ShoppingListOverview,
@@ -21,13 +22,23 @@ function ShoppingListTile({ currentUser, overview, onDelete }: Props) {
       <Typography noWrap variant="h6">
         {overview.name}
       </Typography>
-      <Typography noWrap>Owner: {overview.owner.name}</Typography>
-      <Typography noWrap>Status: {overview.status}</Typography>
+      <Typography noWrap>
+        <FormattedMessage
+          id="components.shoppinglisttile.owner"
+          values={{ name: overview.owner.name }}
+        />
+      </Typography>
+      <Typography noWrap>
+        <FormattedMessage
+          id="components.shoppinglisttile.status"
+          values={{ status: overview.status }}
+        />
+      </Typography>
       <Box display="flex" justifyContent="flex-end" mt={2} gap={2}>
         {canOpen && (
           <Link to={`/shopping-list/${overview.id}`}>
             <Button variant="outlined" size="small">
-              Open
+              <FormattedMessage id="components.shoppinglisttile.open" />
             </Button>
           </Link>
         )}
@@ -38,7 +49,7 @@ function ShoppingListTile({ currentUser, overview, onDelete }: Props) {
           size="small"
           onClick={onDelete}
         >
-          Delete
+          <FormattedMessage id="components.shoppinglisttile.delete" />
         </Button>
       </Box>
     </Box>

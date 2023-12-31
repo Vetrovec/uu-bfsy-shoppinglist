@@ -1,0 +1,46 @@
+{
+  "views.home.create": "Create",
+  "views.home.createShoppingList": "Create new shopping list",
+  "views.home.showOnlyActive": "Show only active",
+
+  "views.shoppinglistid.owner": "Owner: {name}",
+  "views.shoppinglistid.me": "me",
+  "views.shoppinglistid.members": "Members",
+  "views.shoppinglistid.addMember": "Add member",
+  "views.shoppinglistid.onlyOwnerMembers": "Only the owner can add members",
+  "views.shoppinglistid.items": "Items",
+  "views.shoppinglistid.showOnlyActive": "Show only active items",
+  "views.shoppinglistid.addItem": "Add item",
+
+  "components.createitemform.name": "Item name",
+  "components.createitemform.add": "Add item",
+
+  "components.createlistdialog.description": "Please enter the name of the new shopping list.",
+  "components.createlistdialog.label": "Shopping list name",
+  "components.createlistdialog.cancel": "Cancel",
+  "components.createlistdialog.confirm": "Create",
+
+  "components.creatememberform.name": "Member name",
+  "components.creatememberform.add": "Add member",
+
+  "components.deletelistdialog.title": "Confirm delete",
+  "components.deletelistdialog.description": "Are you sure you want to delete this shopping list? This action cannot be undone.",
+  "components.deletelistdialog.cancel": "Cancel",
+  "components.deletelistdialog.confirm": "Delete",
+
+  "components.listitemtable.status": "Status",
+  "components.listitemtable.name": "Name",
+  "components.listitemtable.action": "Action",
+  "components.listitemtable.noItems": "No items found",
+  "components.listitemtable.delete": "Delete",
+
+  "components.listmembertable.name": "Name",
+  "components.listmembertable.action": "Action",
+  "components.listmembertable.noMembers": "No members found",
+  "components.listmembertable.delete": "Delete",
+
+  "components.shoppinglisttile.owner": "Owner: {name}",
+  "components.shoppinglisttile.status": "Status: {status}",
+  "components.shoppinglisttile.open": "Open",
+  "components.shoppinglisttile.delete": "Delete"
+}

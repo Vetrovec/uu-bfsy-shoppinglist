@@ -4,8 +4,8 @@ import {
   TableBody,
   TableContainer,
   TableHead,
-  useTheme,
 } from "@mui/material";
+import { FormattedMessage } from "react-intl";
 import { StyledTableCell } from "../../styled/StyledTableCell";
 import { StyledTableRow } from "../../styled/StyledTableRow";
 import { ShoppingListMember, ShoppingListUser } from "../../types/shoppingList";
@@ -23,16 +23,16 @@ function ListMemberTable({
   members,
   onDelete,
 }: Props) {
-  const theme = useTheme();
-
   return (
     <TableContainer>
       <Table aria-label="Member table">
         <TableHead>
           <StyledTableRow>
-            <StyledTableCell component="th">Name</StyledTableCell>
+            <StyledTableCell component="th">
+              <FormattedMessage id="components.listmembertable.name" />
+            </StyledTableCell>
             <StyledTableCell component="th" align="right">
-              Action
+              <FormattedMessage id="components.listmembertable.action" />
             </StyledTableCell>
           </StyledTableRow>
         </TableHead>
@@ -40,7 +40,7 @@ function ListMemberTable({
           {!members.length && (
             <StyledTableRow>
               <StyledTableCell colSpan={2} align="center">
-                No members found
+                <FormattedMessage id="components.listmembertable.noMembers" />
               </StyledTableCell>
             </StyledTableRow>
           )}
@@ -49,7 +49,6 @@ function ListMemberTable({
               key={member.id}
               sx={{
                 "&:last-child td, &:last-child th": { border: 0 },
-                "&:hover": { backgroundColor: theme.palette.grey[100] },
               }}
             >
               <StyledTableCell>{member.name}</StyledTableCell>
@@ -59,7 +58,7 @@ function ListMemberTable({
                   disabled={!isCurrentUserOwner && member.id !== currentUser.id}
                   onClick={() => onDelete({ member })}
                 >
-                  Delete
+                  <FormattedMessage id="components.listmembertable.delete" />
                 </Button>
               </StyledTableCell>
             </StyledTableRow>

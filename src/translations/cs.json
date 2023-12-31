@@ -1,0 +1,46 @@
+{
+  "views.home.create": "Vytvořit",
+  "views.home.createShoppingList": "Vytvořit nový seznam",
+  "views.home.showOnlyActive": "Ukazovat pouze aktivní",
+
+  "views.shoppinglistid.owner": "Majitel: {name}",
+  "views.shoppinglistid.me": "já",
+  "views.shoppinglistid.members": "Členové",
+  "views.shoppinglistid.addMember": "Přidat člena",
+  "views.shoppinglistid.onlyOwnerMembers": "Pouze majitel může přidávat členy",
+  "views.shoppinglistid.items": "Položky",
+  "views.shoppinglistid.showOnlyActive": "Ukazovat pouze aktivní položky",
+  "views.shoppinglistid.addItem": "Přidat položku",
+
+  "components.createitemform.name": "Název položky",
+  "components.createitemform.add": "Přidat položku",
+
+  "components.createlistdialog.description": "Prosím zadejte název nového seznamu.",
+  "components.createlistdialog.label": "Název seznamu",
+  "components.createlistdialog.cancel": "Zrušit",
+  "components.createlistdialog.confirm": "Vytvořit",
+
+  "components.creatememberform.name": "Jméno člena",
+  "components.creatememberform.add": "Přidat člena",
+
+  "components.deletelistdialog.title": "Smazat seznam",
+  "components.deletelistdialog.description": "Opravdu chcete smazat tento seznam? Tato akce je nevratná.",
+  "components.deletelistdialog.cancel": "Zrušit",
+  "components.deletelistdialog.confirm": "Smazat",
+
+  "components.listitemtable.status": "Status",
+  "components.listitemtable.name": "Název",
+  "components.listitemtable.action": "Akce",
+  "components.listitemtable.noItems": "Žádné položky nenalezeny",
+  "components.listitemtable.delete": "Smazat",
+
+  "components.listmembertable.name": "Jméno",
+  "components.listmembertable.action": "Akce",
+  "components.listmembertable.noMembers": "Žádní členové nenalezeni",
+  "components.listmembertable.delete": "Smazat",
+
+  "components.shoppinglisttile.owner": "Majitel: {name}",
+  "components.shoppinglisttile.status": "Status: {status}",
+  "components.shoppinglisttile.open": "Otevřít",
+  "components.shoppinglisttile.delete": "Smazat"
+}
